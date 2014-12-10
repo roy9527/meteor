@@ -1069,6 +1069,7 @@ var wrapFsFunc = function (fsFuncName, pathArgIndices, options) {
 
     // This branch is used in the case where a callback doesn't have a first
     // error argument, since Future.wrap doesn't handle that case
+
     if (options.noErr) {
       var fut = new Future();
 
@@ -1161,11 +1162,12 @@ var wrapPathFunction = function (name) {
   var f = path[name];
 
   return function (/* args */) {
-    if (process.platform === 'win32')
+    if (process.platform === 'win32') {
       var args = _.toArray(arguments);
       return toPosixPath(f.apply(path, _.map(args, toDosPath)));
-    else
+    } else {
       return f.apply(path, arguments);
+    }
   };
 };
 
