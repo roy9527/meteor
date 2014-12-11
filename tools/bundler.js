@@ -2151,7 +2151,9 @@ exports.buildJsImage = function (options) {
     use: options.use || [],
     sourceRoot: options.sourceRoot,
     sources: options.sources || [],
-    serveRoot: files.pathSep,
+    // it is correct to set slash and not files.pathSep because serverRoot is a
+    // url path and not a file system path
+    serveRoot: '/',
     npmDependencies: options.npmDependencies,
     npmDir: options.npmDir
   });
