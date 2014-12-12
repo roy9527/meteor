@@ -40,7 +40,7 @@ _.extend(exports.PackageMap.prototype, {
   eachPackage: function (iterator) {
     var self = this;
     _.each(self._map, function (info, packageName) {
-      iterator(packageName, _.clone(info));
+      iterator.call(null, packageName, _.clone(info));
     });
   },
   getInfo: function (packageName) {
